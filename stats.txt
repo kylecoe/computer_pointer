@@ -1,0 +1,31 @@
+-----FP32-----
+
+Load time
+Face Detection Load time =  0.13468432426452637
+Landmark Load time =  0.04673314094543457
+Head Pose Load time =  0.05740833282470703
+Gaze Estimation Load time =  0.07266855239868164
+
+Inference Time
+Face Detection Inference Time =  0.015589714050292969
+Face Landmark Inference Time =  0.0006651878356933594
+Pose Inference Time =  0.001432657241821289
+Gaze Inference Time =  0.0017430782318115234
+
+-----FP16-----
+
+Load time
+Face Detection Load time =  0.1396007537841797
+Landmark Load time =  0.04813337326049805
+Head Pose Load time =  0.07628583908081055
+Gaze Estimation Load time =  0.08792662620544434
+
+Inference Time
+Face Detection Inference Time =  0.015984535217285156
+Face Landmark Inference Time =  0.0005693435668945312
+Pose Inference Time =  0.0014901161193847656
+Gaze Inference Time =  0.0018126964569091797
+
+
+
+
