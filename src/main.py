@@ -69,7 +69,7 @@ def main():
         if not os.path.isfile(model_paths[mp]):
             print(model_paths[mp])
             print('Recheck file path and try again')
-            log.error("Unable to find specified video file")
+            log.error("Not a file")
             raise FileNotFoundError 
     
     if input_feed == 'cam':

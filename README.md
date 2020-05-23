@@ -25,7 +25,6 @@ This codebase provides the funcitonality of controlling the screen's mouse point
   - <pre><code>conda create -n {name} python=3.6</code></pre>
   - <pre><code>conda activate {name}</code></pre>
   - <pre><code>pip install -r requirements.txt</code></pre>
-  - Then, follow demo instructions
 
 ## Demo
 
@@ -92,7 +91,11 @@ Results for inference and load time for FP32 precision running on an Intel CPU i
 ![Alt text](/media/Inference_FP32.png)
 ![Alt text](/media/Inference_FP16.png)
 
-As can be seen, the load and inference times do not vary much between precisions, but do vary a fair amount between models. The Face Detection Model is by far the most demanding since it s load time is nearly twice that of the others and the inference and several orders greater. Clearly this is the bottleneck in the application and ongoing work is being done to try and optimize this initial part of the pipeline.
+**Inference time and Accuracy Comparisons for different precision**
+
+As can be seen above, the load and inference times do not vary much between precisions, but do vary a fair amount between models. The Face Detection Model is by far the most demanding since it s load time is nearly twice that of the others and the inference and several orders greater. Clearly this is the bottleneck in the application and ongoing work is being done to try and optimize this initial part of the pipeline.
+
+As for accuracy, the ideal way would have been to compare the FP32 and FP16 confidence values for the face detection model. However, since that was only in FP32, two other methods were attempted. Firstly, the facial landmark pixel locations were recorded for FP32 and FP16 with the FP32 values taken as ground truth since this is running on a CPU. Then the difference in location of the landmarks were measured for the first 15 frames. While there was no difference in the eyes and mouth, there was an occasional difference in pixel location by a maximum difference of 2 pixels for the nose of the FP16 precision. This was double checked using the visualization option and is fortunately not discernable to the human eye. Another method that was tried was to utilize this similar approach but for the final output of the application, which is the gaze vector. For the first 15 frames, the (x,y) values were recorded and compared using simple Euclidean distances with FP32 as the ground truth. This approach managed to show little more of a discernable difference for these relative position values. This amounts to an average difference in (x,y) values of approximately (3.15e-5,3.06e-5). Hence, such small difference in relative distance would rarely be noticeable to the naked eye. Hence, the precision reduction does not seem to reduce accuracy. Attempting this on other hardware platforms would yield more interesting results.
 
 ### Async Inference
 
